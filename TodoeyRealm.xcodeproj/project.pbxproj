@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		864265D12871FFEB00EC90A2 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 864265D02871FFEB00EC90A2 /* Realm */; };
 		864265D32871FFEB00EC90A2 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 864265D22871FFEB00EC90A2 /* RealmSwift */; };
-		865541AE285B47DD0096B746 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 865541AC285B47DD0096B746 /* DataModel.xcdatamodeld */; };
+		864265D728727A4500EC90A2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864265D628727A4500EC90A2 /* Item.swift */; };
+		864265D928727A5C00EC90A2 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864265D828727A5C00EC90A2 /* Category.swift */; };
 		86C16928284FEEC200A96058 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C16927284FEEC200A96058 /* Constant.swift */; };
 		86C3D46128679264000993C9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 86C3D46028679264000993C9 /* README.md */; };
 		86C3D46328679F4D000993C9 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C3D46228679F4D000993C9 /* CategoryViewController.swift */; };
@@ -21,7 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		865541AD285B47DD0096B746 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		864265D628727A4500EC90A2 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		864265D828727A5C00EC90A2 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		86C16927284FEEC200A96058 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		86C3D46028679264000993C9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		86C3D46228679F4D000993C9 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -50,7 +52,8 @@
 		867EF116285A1C8600371A7C /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				865541AC285B47DD0096B746 /* DataModel.xcdatamodeld */,
+				864265D628727A4500EC90A2 /* Item.swift */,
+				864265D828727A5C00EC90A2 /* Category.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -193,9 +196,10 @@
 			files = (
 				86C3D46328679F4D000993C9 /* CategoryViewController.swift in Sources */,
 				EB2BE4FE239524DB00FB933B /* ToDoListViewController.swift in Sources */,
-				865541AE285B47DD0096B746 /* DataModel.xcdatamodeld in Sources */,
 				EB2BE4FA239524DB00FB933B /* AppDelegate.swift in Sources */,
+				864265D728727A4500EC90A2 /* Item.swift in Sources */,
 				86C16928284FEEC200A96058 /* Constant.swift in Sources */,
+				864265D928727A5C00EC90A2 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,19 +425,6 @@
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		865541AC285B47DD0096B746 /* DataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				865541AD285B47DD0096B746 /* DataModel.xcdatamodel */,
-			);
-			currentVersion = 865541AD285B47DD0096B746 /* DataModel.xcdatamodel */;
-			path = DataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = EB2BE4EE239524DB00FB933B /* Project object */;
 }

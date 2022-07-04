@@ -7,20 +7,30 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 class CategoryViewController: UITableViewController {
     
     //MARK: - Private properties
-    private var categoryArray = [CategoryList]()
+    private let realm = try! Realm()
+    private var categoryArray = [Category]()
     private let K = Constant()
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let pullRefresh = UIRefreshControl()
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadCategories()
+        
+        pullRefresh.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        pullRefresh.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.addSubview(pullRefresh)
+    }
+    
+    @objc private func refresh() {
+        tableView.reloadData()
+        pullRefresh.endRefreshing()
     }
     
     // MARK: - Table view data source
@@ -49,20 +59,21 @@ class CategoryViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteCategory = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, _) in
             guard let self = self else { return }
-            self.context.delete(self.categoryArray[indexPath.row])
+            // here will be realm delete method
             self.categoryArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .left)
-            self.saveCategorioes()
+            // here will be realm save method
                 
         }
         return UISwipeActionsConfiguration(actions: [deleteCategory])
     }
     
-    
     //MARK: - Data manipulation methods
-    private func saveCategorioes() {
+    private func save(category: Category) {
         do {
-            try context.save()
+            try realm.write{
+                realm.add(category)
+            }
         } catch {
             print("Error saving context, \(error)")
         }
@@ -70,13 +81,13 @@ class CategoryViewController: UITableViewController {
     }
     
     private func loadCategories() {
-        let request: NSFetchRequest<CategoryList> = CategoryList.fetchRequest()
-        do {
-            categoryArray = try context.fetch(request)
-        } catch {
-            print("Error fetching data from context, \(error)")
-        }
-        tableView.reloadData()
+//        let request: NSFetchRequest<CategoryList> = CategoryList.fetchRequest()
+//        do {
+//            categoryArray = try context.fetch(request)
+//        } catch {
+//            print("Error fetching data from context, \(error)")
+//        }
+//        tableView.reloadData()
     }
     
     //MARK: - Add new category
@@ -86,10 +97,10 @@ class CategoryViewController: UITableViewController {
         let alertController = UIAlertController(title: "Add new category", message: nil, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "Add list", style: .default) { [weak self] action in
             guard let self = self else { return }
-            let newList = CategoryList(context: self.context)
-            newList.name = textField.text
-            self.categoryArray.append(newList)
-            self.saveCategorioes()
+            let newCategory = Category()
+            newCategory.name = textField.text!
+            self.categoryArray.append(newCategory)
+            self.save(category: newCategory)
         }
         
         alertController.addTextField { alertTextfield in
